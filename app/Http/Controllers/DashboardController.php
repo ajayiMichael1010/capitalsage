@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Contracts\View\View;
+
 class DashboardController extends BaseController
 {
-    public function index(){
+    public function dashboard(): View
+    {
         $pageTitle = "Registration";
 
-        return view("dashboard.index", compact("pageTitle"));
+        return view("dashboard.dashboard", compact("pageTitle"));
     }
 }

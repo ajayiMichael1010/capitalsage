@@ -13,5 +13,5 @@ Route::get("register", [UserRegistrationController::class, "create"])->name("cre
 Route::post("register", [UserRegistrationController::class, "register"])->name("register");
 });
 
-Route::get("logout", [UserAuthenticationController::class, "logout"])->name("logout");
+Route::post("logout", [UserAuthenticationController::class, "logout"])->name("logout");
 

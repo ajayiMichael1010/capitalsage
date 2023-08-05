@@ -1,4 +1,11 @@
-capitalsage-bg-primary{
+.capitalsage-bg-primary{
     background-color: #f60 !important;
     color:#fff;
 }
+
+@media(min-width: 768px){
+    .hamburger{
+        display: none;
+    }
+}
+
