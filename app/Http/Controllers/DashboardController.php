@@ -8,7 +8,7 @@ class DashboardController extends BaseController
 {
     public function dashboard(): View
     {
-        $pageTitle = "Registration";
+        $pageTitle = "Dashboard";
 
         return view("dashboard.dashboard", compact("pageTitle"));
     }
