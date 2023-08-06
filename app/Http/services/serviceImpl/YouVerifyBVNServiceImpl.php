@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\bvn;
+namespace App\Http\services\serviceImpl;
 
 use App\Constants\YouVerify;
-use App\Http\Controllers\Controller;
 use App\Http\Responses\YouVerifyBVNVerificationResponse;
+use App\Http\services\BVNService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
-class BVNVerificationAPIController extends Controller
+class YouVerifyBVNServiceImpl implements BVNService
 {
-    public function verifyBvn(Request $request)
+    public function verifyBVN(Request $request)
     {
         // YouVerify API key
         $apiKey = YouVerify::YOU_VERIFY_API_KEY;
@@ -36,11 +36,13 @@ class BVNVerificationAPIController extends Controller
         ];
         $httpRequest = Http::withHeaders($headers)->post($apiUrl, $requestBody);
         if ($httpRequest->successful()) {
-           $response = $httpRequest->json();
-           $responseData = $response["data"];
-           return response()->json(YouVerifyBVNVerificationResponse::mapBVNVerificationSuccessResponse($responseData),200);
+            $response = $httpRequest->json();
+
+            //Return bvn owner details
+            return YouVerifyBVNVerificationResponse::mapBVNOwnerDetail($response);
+
         } else {
-          return $httpRequest->json();
+            return YouVerifyBVNVerificationResponse::mapBVNErrorDetail($httpRequest->json());
         }
     }
 }

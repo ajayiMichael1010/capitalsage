@@ -16,7 +16,7 @@
                 Verify BVN
             </button>
         </div>
-        <span>Please use 11111111111 for testing</span>
+        <span class="custom-hint-text">Please use 11111111111 for testing</span>
 
         <div class="flex flex-col w-full mt-12">
             <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">

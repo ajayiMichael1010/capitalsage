@@ -23,8 +23,7 @@ class UserRegistrationRequest extends FormRequest
         return [
             'fullName' => ['required', 'string'],
             'email' => ['required', 'email'],
-            'password' => ['required', 'string','confirmed'],
-            'bvn' => ['required', 'string'],
+            'password' => ['required', 'string','confirmed','min:8','regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/'],
         ];
     }
 
@@ -40,7 +39,7 @@ class UserRegistrationRequest extends FormRequest
             'email.required' => 'The email address is required.',
             'email.email' => 'Please enter a valid email address.',
             'password.required' => 'The password is required.',
-            'bvn.required' => 'The BVN (Bank Verification Number) is required.',
+            'password.regex' => 'At least 1 lower case, 1 upper case and 1 special character must be present.',
         ];
     }
 }

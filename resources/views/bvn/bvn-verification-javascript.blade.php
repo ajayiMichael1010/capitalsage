@@ -46,8 +46,15 @@
             elementSelector(".spinningIcon").style.display = "none";
         })
         .catch(error => {
-            console.log(error);
+            //console.log(error);
             elementSelector(".spinningIcon").style.display = "none";
+            // let bvnErrorDetail = error;
+            // for (const key in bvnErrorDetail) {
+            //     if (bvnErrorDetail.hasOwnProperty(key)) {
+            //         const value = bvnErrorDetail[key];
+            //         bvnErrorDetail += `<tr><td>${key}</td><td>${value}</td></tr>`;
+            //     }
+            // }
         });
     });
 

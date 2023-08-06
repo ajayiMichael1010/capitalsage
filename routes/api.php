@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\bvn\BVNVerificationAPIController;
+use App\Http\Controllers\bvn\YouVerifyBVNVerificationAPIController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -20,5 +20,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post("verify-bvn", [BVNVerificationAPIController::class, 'verifyBvn'])->name('verifyBvn');
+Route::post("verify-bvn", [YouVerifyBVNVerificationAPIController::class, 'verifyBvn'])->name('verifyBvn');
 

@@ -22,7 +22,7 @@ class UserRegistrationController extends BaseController
      *
      * @return View
      */
-    public function create(): View
+    public function createRegistrationForm(): View
     {
         $pageTitle = "Registration";
 
@@ -42,17 +42,18 @@ class UserRegistrationController extends BaseController
             $user->name = $request->fullName;
             $user->email = $request->email;
             $user->password = Hash::make($request->password);
-            $user->bvn = $request->bvn;
-
             if (empty($request->role)) {
                 $user->role = UserRole::ROLE_USER;
+            }
+            else{
+                $user->role = $request->role;
             }
             $user->save();
         } catch (QueryException $e) {
             if ($e->getCode() === '23000') {
-                return back()->with('error', 'Registration failed! Email already exists'. $e->getCode());
+                return back()->with('error', 'Registration failed! Email already exists');
             } else {
-                return back()->with('error', 'Registration failed! An error has occurred'. $e->getCode());
+                return back()->with('error', 'Registration failed! An error has occurred');
             }
         }
         return back()->with('success', 'Registration successful! You can now log in.');

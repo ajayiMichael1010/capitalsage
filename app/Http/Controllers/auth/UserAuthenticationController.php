@@ -3,18 +3,17 @@
 namespace App\Http\Controllers\auth;
 
 use App\Http\Controllers\BaseController;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\UserLoginRequest;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 
 class UserAuthenticationController extends BaseController
 {
-    public function create() : view
+    public function createLoginForm() : view
     {
-        $pageTitle = "Login In";
+        $pageTitle = "Log In";
 
         return view("auth.login", compact(
             "pageTitle"
@@ -23,7 +22,6 @@ class UserAuthenticationController extends BaseController
 
     public function login(UserLoginRequest $request): RedirectResponse
     {
-
         $credentials = $request->only(['email', 'password']);
 
         if (Auth::attempt($credentials)) {
