@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class BVNRegistrationControllerTest extends TestCase
+class YouVerifyBVNVerificationAPIControllerTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -19,6 +19,6 @@ class BVNRegistrationControllerTest extends TestCase
         $response = $this->post('/api/verify-bvn', $request);
 
         $response->assertStatus(200);
-        //$this->assertEquals('Staff updated', $response->json());
+
     }
 }

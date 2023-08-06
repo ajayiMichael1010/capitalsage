@@ -39,7 +39,7 @@ class UserRegistrationRequest extends FormRequest
             'email.required' => 'The email address is required.',
             'email.email' => 'Please enter a valid email address.',
             'password.required' => 'The password is required.',
-            'password.regex' => 'At least 1 lower case, 1 upper case and 1 special character must be present.',
+            'password.regex' => 'At least 1 lower case, 1 upper case, 1 number and 1 special character must be present.',
         ];
     }
 }
