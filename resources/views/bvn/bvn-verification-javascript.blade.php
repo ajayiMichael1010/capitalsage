@@ -3,8 +3,11 @@
         return document.querySelector(el);
     }
 
+    elementSelector(".spinningIcon").style.display = "none";
+
     elementSelector("#bvnVerifyButton").addEventListener("click", function() {
         const bvn = elementSelector("#bvnInput").value;
+        elementSelector(".spinningIcon").style.display = "block";
 
         fetch("{{route('verifyBvn')}}", {
             method: 'POST',
@@ -16,29 +19,36 @@
                 bvn: bvn
             })
         })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Request failed.');
-                }
-                return response.json();
-            })
-            .then(data => {
-                let bvnOwnerDetailRow = "";
-                const bvnOwnerDetail = data.data;
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Request failed.');
+            }
+            return response.json();
+        })
+        .then(data => {
+            let bvnOwnerDetailRow = "";
+            console.log(data);
+            const bvnOwnerDetail = data;
 
-                for (const key in bvnOwnerDetail) {
-                    if (bvnOwnerDetail.hasOwnProperty(key)) {
-                        const value = bvnOwnerDetail[key];
+            for (const key in bvnOwnerDetail) {
+                if (bvnOwnerDetail.hasOwnProperty(key)) {
+                    const value = bvnOwnerDetail[key];
+                    if(key ==="image"){
+                        bvnOwnerDetailRow += `<tr><td>${key}</td><td><img src="${value}" width="150" class="rounded"></td></tr>`;
+                    }
+                    else{
                         bvnOwnerDetailRow += `<tr><td>${key}</td><td>${value}</td></tr>`;
                     }
                 }
+            }
 
-                elementSelector("#bvnOwnerDetail").innerHTML = bvnOwnerDetailRow;
-            })
-            .catch(error => {
-                console.log(error);
-
-            });
+            elementSelector("#bvnOwnerDetail").innerHTML = bvnOwnerDetailRow;
+            elementSelector(".spinningIcon").style.display = "none";
+        })
+        .catch(error => {
+            console.log(error);
+            elementSelector(".spinningIcon").style.display = "none";
+        });
     });
 
 </script>

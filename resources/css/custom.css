@@ -1,11 +1,15 @@
-.capitalsage-bg-primary{
+.custom-button-bg-primary{
     background-color: #f60 !important;
     color:#fff;
 }
 
+.custom-button-bg-primary:hover{
+    background-color: #043494 !important;
+}
+
 @media(min-width: 768px){
     .hamburger{
-        display: none;
+        display: none !important;
     }
 }
 

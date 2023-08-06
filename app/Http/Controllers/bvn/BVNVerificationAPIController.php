@@ -4,6 +4,7 @@ namespace App\Http\Controllers\bvn;
 
 use App\Constants\YouVerify;
 use App\Http\Controllers\Controller;
+use App\Http\Responses\YouVerifyBVNVerificationResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
@@ -33,12 +34,13 @@ class BVNVerificationAPIController extends Controller
             "id" => $bvn,
             "isSubjectConsent" => true,
         ];
-
-        $response = Http::withHeaders($headers)->post($apiUrl, $requestBody);
-        if ($response->successful()) {
-           return $response->json();
+        $httpRequest = Http::withHeaders($headers)->post($apiUrl, $requestBody);
+        if ($httpRequest->successful()) {
+           $response = $httpRequest->json();
+           $responseData = $response["data"];
+           return response()->json(YouVerifyBVNVerificationResponse::mapBVNVerificationSuccessResponse($responseData),200);
         } else {
-           return $error = $response->json();
+          return $httpRequest->json();
         }
     }
 }

@@ -19,10 +19,8 @@
 </head>
 
 <body class="antialiased">
-    @include("layout/header")
-    {{ $slot }}
-    @include("layout/footer")
+@include("layout/header")
+{{ $slot }}
 
-    @vite('resources/js/app.js')
-
+@vite('resources/js/app.js')
 </body>
