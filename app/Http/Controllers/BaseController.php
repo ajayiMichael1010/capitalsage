@@ -6,6 +6,6 @@ class BaseController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['login','register','create','verifyBVN']]);
+        $this->middleware('auth', ['except' => ['login','register','create']]);
     }
 }

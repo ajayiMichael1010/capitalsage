@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\bvn\BVNController;
+use App\Http\Controllers\bvn\BVNVerificationAPIController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,3 +23,4 @@ Route::get('/', function () {
 require __DIR__.'/auth.php';
 
 Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+Route::get("bvn/verification", [BVNController::class, 'createBvnVerificationForm'])->name('createBvnVerificationForm');
