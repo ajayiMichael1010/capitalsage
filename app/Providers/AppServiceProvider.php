@@ -3,8 +3,8 @@
 namespace App\Providers;
 
 use App\Http\Controllers\bvn\YouVerifyBVNVerificationAPIController;
-use App\Http\services\BVNService;
-use App\Http\services\serviceImpl\YouVerifyBVNServiceImpl;
+use App\Http\Services\BVNService;
+use App\Http\Services\ServiceImpl\YouVerifyBVNServiceImpl;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider

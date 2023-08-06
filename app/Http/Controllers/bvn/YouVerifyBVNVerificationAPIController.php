@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers\bvn;
 
-use App\Constants\YouVerify;
 use App\Http\Controllers\Controller;
-use App\Http\Responses\YouVerifyBVNVerificationResponse;
-use App\Http\services\BVNService;
+use App\Http\Services\BVNService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
 
 class YouVerifyBVNVerificationAPIController extends Controller
 {

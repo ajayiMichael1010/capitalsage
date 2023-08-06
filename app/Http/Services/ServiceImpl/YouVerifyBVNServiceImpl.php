@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\services\serviceImpl;
+namespace App\Http\Services\ServiceImpl;
 
 use App\Constants\YouVerify;
 use App\Http\Responses\YouVerifyBVNVerificationResponse;
-use App\Http\services\BVNService;
+use App\Http\Services\BVNService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
