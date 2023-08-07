@@ -8,9 +8,21 @@ use App\Http\Services\BVNService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
+/**
+ * Class YouVerifyBVNServiceImpl
+ * Implements the BVNService interface for BVN verification using YouVerify API.
+ *
+ * @package App\Http\Services\ServiceImpl
+ */
 class YouVerifyBVNServiceImpl implements BVNService
 {
-    public function verifyBVN(Request $request)
+    /**
+     * Verify a BVN using the YouVerify API.
+     *
+     * @param Request $request The HTTP request containing the BVN data.
+     * @return array The result of BVN verification.
+     */
+    public function verifyBVN(Request $request): array
     {
         // YouVerify API key
         $apiKey = YouVerify::YOU_VERIFY_API_KEY;
@@ -23,10 +35,10 @@ class YouVerifyBVNServiceImpl implements BVNService
             'token' => $apiKey
         ];
 
-        //Test BVN
+        // Test BVN
         $bvn = "11111111111";
 
-        if(!empty($request->bvn)){
+        if (!empty($request->bvn)) {
             $bvn = $request->bvn;
         }
 
@@ -38,7 +50,7 @@ class YouVerifyBVNServiceImpl implements BVNService
         if ($httpRequest->successful()) {
             $response = $httpRequest->json();
 
-            //Return bvn owner details
+            // Return BVN owner details
             return YouVerifyBVNVerificationResponse::mapBVNOwnerDetail($response);
 
         } else {

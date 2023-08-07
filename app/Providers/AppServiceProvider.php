@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
-use App\Http\Controllers\bvn\YouVerifyBVNVerificationAPIController;
+use App\Http\Controllers\bvn\BVNVerificationAPIController;
 use App\Http\Services\BVNService;
+use App\Http\Services\MediaManagerService;
+use App\Http\Services\ServiceImpl\CloudinaryServiceImpl;
 use App\Http\Services\ServiceImpl\YouVerifyBVNServiceImpl;
 use Illuminate\Support\ServiceProvider;
 
@@ -14,9 +16,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->when(YouVerifyBVNVerificationAPIController::class)
-            ->needs(BVNService::class)
-            ->give(YouVerifyBVNServiceImpl::class);
+        $this->app->bind(BVNService::class,YouVerifyBVNServiceImpl::class);
     }
 
     /**

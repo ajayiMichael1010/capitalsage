@@ -7,10 +7,18 @@ use App\Http\Services\BVNService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-class YouVerifyBVNVerificationAPIController extends Controller
+class BVNVerificationAPIController extends Controller
 {
-    private BVNService $BVNService;
     /**
+     * BVNService instance.
+     *
+     * @var BVNService
+     */
+    private BVNService $BVNService;
+
+    /**
+     * BVNVerificationAPIController constructor.
+     *
      * @param BVNService $BVNService
      */
     public function __construct(BVNService $BVNService)
@@ -18,9 +26,16 @@ class YouVerifyBVNVerificationAPIController extends Controller
         $this->BVNService = $BVNService;
     }
 
+    /**
+     * Verify a BVN.
+     *
+     * @param Request $request
+     *
+     * @return JsonResponse
+     */
     public function verifyBvn(Request $request): JsonResponse
     {
-      $bvnOwnerDetail = $this->BVNService->verifyBVN($request);
-      return response()->json($bvnOwnerDetail, 200);
+        $bvnOwnerDetail = $this->BVNService->verifyBVN($request);
+        return response()->json($bvnOwnerDetail, 200);
     }
 }

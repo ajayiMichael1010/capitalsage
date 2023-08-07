@@ -2,11 +2,23 @@
 
 namespace App\Http\Responses;
 
+/**
+ * Class YouVerifyBVNVerificationResponse
+ * Maps YouVerify BVN verification responses.
+ *
+ * @package App\Http\Responses
+ */
 class YouVerifyBVNVerificationResponse
 {
-    public static function mapBVNOwnerDetail(mixed $bvnVerificationResponseData): array
+    /**
+     * Map BVN owner detail from YouVerify response.
+     *
+     * @param array $bvnVerificationResponseData The BVN verification response data from YouVerify.
+     * @return array Mapped BVN owner details.
+     */
+    public static function mapBVNOwnerDetail(array $bvnVerificationResponseData): array
     {
-        return[
+        return [
             "image" => $bvnVerificationResponseData["data"]["image"],
             "firstName" => $bvnVerificationResponseData["data"]["firstName"],
             "middleName" => $bvnVerificationResponseData["data"]["middleName"],
@@ -22,11 +34,19 @@ class YouVerifyBVNVerificationResponse
             "isConsent" => $bvnVerificationResponseData["data"]["isConsent"],
             "createdAt" => $bvnVerificationResponseData["data"]["createdAt"],
             "lastModifiedAt" => $bvnVerificationResponseData["data"]["lastModifiedAt"],
-            "requestedBy" => "firstName: ". $bvnVerificationResponseData["data"]["requestedBy"]["firstName"] . " ,lastName: ".$bvnVerificationResponseData["data"]["requestedBy"]["lastName"]." ,id: ".$bvnVerificationResponseData["data"]["requestedBy"]["id"],
+            "requestedBy" => "firstName: " . $bvnVerificationResponseData["data"]["requestedBy"]["firstName"] .
+                " ,lastName: " . $bvnVerificationResponseData["data"]["requestedBy"]["lastName"] .
+                " ,id: " . $bvnVerificationResponseData["data"]["requestedBy"]["id"],
         ];
     }
 
-    public static function mapBVNErrorDetail(mixed $errorDetail): array
+    /**
+     * Map BVN error detail from YouVerify response.
+     *
+     * @param array $errorDetail The error detail data from YouVerify.
+     * @return array Mapped error details.
+     */
+    public static function mapBVNErrorDetail(array $errorDetail): array
     {
         return [
             "success" => $errorDetail["success"],

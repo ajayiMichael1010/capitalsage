@@ -7,10 +7,14 @@ use Illuminate\Contracts\View\View;
 
 class BVNController extends BaseController
 {
-    public function createBvnVerificationForm() : view
+    /**
+     * Display the BVN verification form.
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function createBvnVerificationForm(): View
     {
         $pageTitle = "BVN Verification";
         return view("bvn.bvn-verification", compact("pageTitle"));
     }
-
 }

@@ -45,10 +45,11 @@ Follow these steps to set up the project on your local machine:
 Clone the repository to your local machine:
 
 ```bash
-git clone [repository_url]
+git clone https://github.com/ajayiMichael1010/capitalsage.git
 
 ## Install Dependencies
 Run the following commands to install dependencies and set up the environment:
+
 composer install
 php -r "file_exists('.env') || copy('.env.example', '.env');"
 php artisan key:generate
@@ -77,6 +78,9 @@ npm run dev
 Run Tests
 Run tests to ensure everything is functioning correctly:
 php artisan test
+
+Explore Features
+Take some time to explore and understand the authentication and BVN verification system features of the application.
 
 
 

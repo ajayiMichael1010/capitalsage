@@ -13,6 +13,8 @@ use Illuminate\Database\QueryException;
 
 /**
  * Class UserRegistrationController
+ * Handles user registration functionality.
+ *
  * @package App\Http\Controllers\Auth
  */
 class UserRegistrationController extends BaseController
@@ -32,7 +34,7 @@ class UserRegistrationController extends BaseController
     /**
      * Handle user registration.
      *
-     * @param UserRegistrationRequest $request
+     * @param UserRegistrationRequest $request // Using the UserRegistrationRequest for validation
      * @return RedirectResponse
      */
     public function register(UserRegistrationRequest $request): RedirectResponse
@@ -44,8 +46,7 @@ class UserRegistrationController extends BaseController
             $user->password = Hash::make($request->password);
             if (empty($request->role)) {
                 $user->role = UserRole::ROLE_USER;
-            }
-            else{
+            } else {
                 $user->role = $request->role;
             }
             $user->save();

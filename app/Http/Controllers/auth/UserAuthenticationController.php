@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\auth;
 
 use App\Http\Controllers\BaseController;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\UserLoginRequest;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -11,7 +10,12 @@ use Illuminate\Support\Facades\Auth;
 
 class UserAuthenticationController extends BaseController
 {
-    public function createLoginForm() : view
+    /**
+     * Display the login form.
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function createLoginForm(): View
     {
         $pageTitle = "Log In";
 
@@ -20,6 +24,13 @@ class UserAuthenticationController extends BaseController
         ));
     }
 
+    /**
+     * Handle user login attempt.
+     *
+     * @param UserLoginRequest $request // Using the UserLoginRequest for validation
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function login(UserLoginRequest $request): RedirectResponse
     {
         $credentials = $request->only(['email', 'password']);
@@ -33,6 +44,11 @@ class UserAuthenticationController extends BaseController
         }
     }
 
+    /**
+     * Log the user out.
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function logout(): RedirectResponse
     {
         Auth::logout();
