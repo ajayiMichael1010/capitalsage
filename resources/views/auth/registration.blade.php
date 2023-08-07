@@ -41,7 +41,8 @@
                     </div>
                     <div class="mt-2">
                         <input id="password" name="password" type="password" required autocomplete="password"
-                               class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                               class="password block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    <span class="custom-hint-text" style="font-size: 0.7em;">Password must include Upper case, Lower case, Number and Symbol</span>
                     </div>
                     @error('password')
                     <div class="text-red-500">{{ $message }}</div>
@@ -54,8 +55,8 @@
                             Password</label>
                     </div>
                     <div class="mt-2">
-                        <input id="cPassword" name="password_confirmation" type="password" required
-                               autocomplete="password" required
+                        <input id="confirmPassword" name="password_confirmation" type="password" required
+                               autocomplete="confirmPassword" required
                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                     </div>
                 </div>

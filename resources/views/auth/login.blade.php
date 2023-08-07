@@ -1,5 +1,5 @@
 <x-layout>
-    @include("includes.message")
+
     <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
         <div class="sm:mx-auto sm:w-full sm:max-w-sm">
             <img class="mx-auto h-10 w-auto" src="https://res.cloudinary.com/dg8z8uh8f/image/upload/v1691324438/htmaey7rpkty5zti0mvq.png" alt="Your Company">
@@ -7,6 +7,7 @@
         </div>
 
         <div class="mt-4 sm:mx-auto sm:w-full sm:max-w-sm">
+            @include("includes.message")
             <form class="space-y-6 nonAjaxForm" action="/login" method="POST">
                 @csrf
                 <div>
