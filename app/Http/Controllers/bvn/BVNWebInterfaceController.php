@@ -5,7 +5,7 @@ namespace App\Http\Controllers\bvn;
 use App\Http\Controllers\BaseController;
 use Illuminate\Contracts\View\View;
 
-class BVNController extends BaseController
+class BVNWebInterfaceController extends BaseController
 {
     /**
      * Display the BVN verification form.

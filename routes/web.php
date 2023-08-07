@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\bvn\BVNController;
+use App\Http\Controllers\bvn\BVNWebInterfaceController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -18,6 +18,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
-Route::get("bvn/verification", [BVNController::class, 'createBvnVerificationForm'])->name('createBvnVerificationForm');
+Route::get("bvn/verification", [BVNWebInterfaceController::class, 'createBvnVerificationForm'])->name('createBvnVerificationForm');
 
 require __DIR__.'/auth.php'; //CUSTOM auth.php
