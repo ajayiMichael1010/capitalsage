@@ -4,7 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>{{config('app.name')}}</title>
+    <link rel="icon" href="https://res.cloudinary.com/dg8z8uh8f/image/upload/v1691324438/htmaey7rpkty5zti0mvq.png">
+
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
