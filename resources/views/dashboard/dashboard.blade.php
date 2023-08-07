@@ -3,7 +3,7 @@
     <div class="max-w-md mx-auto mt-12 bg-white p-8 rounded-lg shadow-lg">
         <div class="text-center">
             <h1 class="text-2xl font-semibold">{{Auth::user()->name}}</h1>
-            <p class="mt-2 text-gray-600">Web Developer</p>
+            <p class="mt-2 text-gray-600">Software Engineer</p>
         </div>
         <div class="mt-6">
             <h2 class="text-lg font-semibold">Contact Information</h2>

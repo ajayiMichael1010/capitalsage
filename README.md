@@ -67,7 +67,6 @@ Replace the server URL with the APP_URL in the .env file.
 
 Migrate Database Tables
 Run database migrations to set up tables:
-
 php artisan migrate
 
 Install and Build Frontend

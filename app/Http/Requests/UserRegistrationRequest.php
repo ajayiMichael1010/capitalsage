@@ -23,7 +23,7 @@ class UserRegistrationRequest extends FormRequest
         return [
             'fullName' => ['required', 'string'],
             'email' => ['required', 'email'],
-            'password' => ['required', 'string','confirmed','min:8','regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/'],
+            'password' => ['required', 'string','confirmed','min:8','regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$#!%*?&])[A-Za-z\d@$#!%*?&]{8,}$/'],
         ];
     }
 
