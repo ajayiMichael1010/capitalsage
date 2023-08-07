@@ -24,5 +24,6 @@
     @include("layout/footer")
 
     @vite('resources/js/app.js')
+    @vite('resources/js/custom.js')
 
 </body>

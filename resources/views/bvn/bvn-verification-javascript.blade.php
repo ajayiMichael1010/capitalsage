@@ -1,13 +1,12 @@
 <script>
-    const elementSelector = (el) => {
+    const selectElement = (el) => {
         return document.querySelector(el);
     }
+    selectElement(".spinningIcon").style.display = "none";
 
-    elementSelector(".spinningIcon").style.display = "none";
-
-    elementSelector("#bvnVerifyButton").addEventListener("click", function() {
-        const bvn = elementSelector("#bvnInput").value;
-        elementSelector(".spinningIcon").style.display = "block";
+    selectElement("#bvnVerifyButton").addEventListener("click", function() {
+        const bvn = selectElement("#bvnInput").value;
+        selectElement(".spinningIcon").style.display = "block";
 
         fetch("{{route('verifyBvn')}}", {
             method: 'POST',
@@ -42,12 +41,12 @@
                 }
             }
 
-            elementSelector("#bvnOwnerDetail").innerHTML = bvnOwnerDetailRow;
-            elementSelector(".spinningIcon").style.display = "none";
+            selectElement("#bvnOwnerDetail").innerHTML = bvnOwnerDetailRow;
+            selectElement(".spinningIcon").style.display = "none";
         })
         .catch(error => {
             //console.log(error);
-            elementSelector(".spinningIcon").style.display = "none";
+            selectElement(".spinningIcon").style.display = "none";
             // let bvnErrorDetail = error;
             // for (const key in bvnErrorDetail) {
             //     if (bvnErrorDetail.hasOwnProperty(key)) {
