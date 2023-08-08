@@ -7,6 +7,12 @@ use App\Http\Services\BVNService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
+/**
+ * Class BVNVerificationAPIController
+ * Handles BVN verification requests and responses.
+ *
+ * @package App\Http\Controllers\bvn
+ */
 class BVNVerificationAPIController extends Controller
 {
     /**
@@ -19,7 +25,7 @@ class BVNVerificationAPIController extends Controller
     /**
      * BVNVerificationAPIController constructor.
      *
-     * @param BVNService $BVNService
+     * @param BVNService $BVNService The BVN verification service instance.
      */
     public function __construct(BVNService $BVNService)
     {
@@ -29,13 +35,16 @@ class BVNVerificationAPIController extends Controller
     /**
      * Verify a BVN.
      *
-     * @param Request $request
+     * @param Request $request The HTTP request containing BVN data.
      *
      * @return JsonResponse
      */
     public function verifyBvn(Request $request): JsonResponse
     {
+        // Verify BVN using the BVNService
         $bvnOwnerDetail = $this->BVNService->verifyBVN($request);
-        return response()->json($bvnOwnerDetail, 200);
+
+        // Construct JSON response with the appropriate status code
+        return response()->json($bvnOwnerDetail, $bvnOwnerDetail["statusCode"]); // statusCode = 200, 400, 403
     }
 }

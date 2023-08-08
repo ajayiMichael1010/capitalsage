@@ -1,60 +1,65 @@
+<!-- Include Axios library for making HTTP requests -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
+    // Initialize a variable to store the HTML rows for BVN owner details
+    let bvnOwnerDetailRows = "";
+
+    // Define a function to select an HTML element by its CSS selector
     const selectElement = (el) => {
         return document.querySelector(el);
     }
+
+    // Hide the spinning icon initially
     selectElement(".spinningIcon").style.display = "none";
 
+    // Add an event listener to the BVN Verify button
     selectElement("#bvnVerifyButton").addEventListener("click", function() {
+        // Get the BVN input value
         const bvn = selectElement("#bvnInput").value;
+
+        // Display the spinning icon while processing
         selectElement(".spinningIcon").style.display = "block";
 
-        fetch("{{route('verifyBvn')}}", {
-            method: 'POST',
+        // Make a POST request to verify the BVN using Axios
+        axios.post("{{route('verifyBvn')}}", {bvn: bvn},{
+            // Set request headers, including CSRF token
             headers: {
                 'Content-Type': 'application/json',
                 'X-CSRF-TOKEN': '{{ csrf_token() }}' // Include the CSRF token if needed
             },
-            body: JSON.stringify({
-                bvn: bvn
-            })
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Request failed.');
-            }
-            return response.json();
-        })
-        .then(data => {
-            let bvnOwnerDetailRow = "";
-            console.log(data);
-            const bvnOwnerDetail = data;
+            .then(res => {
+                // Handle the successful response
+                console.log(res);
+                const bvnOwnerDetail = res.data;
 
-            for (const key in bvnOwnerDetail) {
-                if (bvnOwnerDetail.hasOwnProperty(key)) {
-                    const value = bvnOwnerDetail[key];
-                    if(key ==="image"){
-                        bvnOwnerDetailRow += `<tr><td>${key}</td><td><img src="${value}" width="150" class="rounded"></td></tr>`;
-                    }
-                    else{
-                        bvnOwnerDetailRow += `<tr><td>${key}</td><td>${value}</td></tr>`;
+                // Iterate through BVN owner details and create HTML rows
+                for (const key in bvnOwnerDetail) {
+                    if (bvnOwnerDetail.hasOwnProperty(key)) {
+                        const value = bvnOwnerDetail[key];
+                        if(key === "image"){
+                            // If the key is 'image', display an image tag
+                            bvnOwnerDetailRows += `<tr><td>${key}</td><td><img src="${value}" width="150" class="rounded"></td></tr>`;
+                        } else {
+                            // For other keys, display text data
+                            bvnOwnerDetailRows += `<tr><td>${key}</td><td>${value}</td></tr>`;
+                        }
                     }
                 }
-            }
 
-            selectElement("#bvnOwnerDetail").innerHTML = bvnOwnerDetailRow;
-            selectElement(".spinningIcon").style.display = "none";
-        })
-        .catch(error => {
-            //console.log(error);
-            selectElement(".spinningIcon").style.display = "none";
-            // let bvnErrorDetail = error;
-            // for (const key in bvnErrorDetail) {
-            //     if (bvnErrorDetail.hasOwnProperty(key)) {
-            //         const value = bvnErrorDetail[key];
-            //         bvnErrorDetail += `<tr><td>${key}</td><td>${value}</td></tr>`;
-            //     }
-            // }
-        });
+                // Update the BVN owner detail table and hide the spinning icon
+                selectElement("#bvnOwnerDetail").innerHTML = bvnOwnerDetailRows;
+                selectElement(".spinningIcon").style.display = "none";
+            })
+            .catch(error => {
+                // Handle errors and display error message in the table
+                let bvnErrorDetail = error.response.data.message;
+                bvnOwnerDetailRows += `<tr><td>Message</td><td style="color: red">${bvnErrorDetail}</td></tr>`;
+                selectElement("#bvnOwnerDetail").innerHTML = bvnOwnerDetailRows;
+                selectElement(".spinningIcon").style.display = "none";
+            });
+
+        // Reset the HTML rows variable
+        bvnOwnerDetailRows = "";
     });
-
 </script>

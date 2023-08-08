@@ -13,12 +13,11 @@ class YouVerifyBVNVerificationAPIControllerTest extends TestCase
     public function test_verify_bvn_api_controller_returns_json_response()
     {
         $request = [
-            "bvn" => "11111111112"
+            "bvn" => "11111111111"
         ];
 
         $response = $this->post('/api/verify-bvn', $request);
 
         $response->assertStatus(200);
-
     }
 }
