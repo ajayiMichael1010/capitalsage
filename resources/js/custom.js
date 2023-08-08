@@ -12,6 +12,8 @@ selectElement(".nonAjaxForm").addEventListener("submit", function() {
     selectElement(".spinningIcon").style.display = "block";
 });
 
+const registerButton = selectElement("#registerButton")
+
 // Initialize an empty string for password checking hint
 let passwordCheckingHint = "";
 
@@ -24,8 +26,10 @@ selectElement("#confirmPassword").addEventListener("keyup", function(e) {
     // Check if passwords match
     if (password !== confirmPassword) {
         passwordCheckingHint = "Password not matched";
+        registerButton.setAttribute("disabled",true);
     } else {
         passwordCheckingHint = "";
+        registerButton.removeAttribute("disabled");
     }
 
     // Display the password checking hint in the element with id "passwordChecker"
